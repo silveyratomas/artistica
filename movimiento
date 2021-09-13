@@ -1,0 +1,25 @@
+#include<Servo.h>
+
+Servo Servo1;
+
+int const PotPin=A5;
+int PotVal;
+int angle;
+
+void setup(){
+
+Servo1.attach(8);
+Serial.begin(9600);
+}
+
+void loop(){
+
+PotVal=analogRead(PotPin);
+Serial.print("PotVal:");
+Serial.print(PotVal);
+angle=map(PotVal,0,1023,0,180);
+Serial.print ("angle= ");
+Serial.println (angle);
+Servo1.write(angle);
+delay (50);
+}
