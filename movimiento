@@ -1,21 +1,24 @@
-#include <Servo.h>
+#include<Servo.h>
 Servo Servo1;
-int const potPin=A5;
-int potVal;
+int const PotPin=A5;
+int PotVal;
 int angle;
-
-void setup() {
-  Servo1.attach(8);
-  Serial.begin(9600);
+void setup(){
+Servo1.attach(8);
+Serial.begin(9600);
 }
+void loop(){
+PotVal=analogRead(PotPin);
 
+angle=map(PotVal,0,1023,0,180);
+Serial.print ("angle= ");
+Serial.println (angle);
+Servo1.write(angle);
 
-void loop() {
-  potVal=analogRead(potPin);
-  Serial.print("potVal:");
-  Serial.print(potVal);
-  angle=map(potVal, 0, 1023, 0, 180);
-  Serial.print("angle= ");
-  Serial.println(angle);
-  delay (50);
+  if (angle < 180)
+Serial.println ("siga girando para la segunda plataforma");
+  else 
+Serial.println ("2da plataforma lista");
+delay (1000);
+
 }
